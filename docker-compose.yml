@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    build: ./WWW
+    ports:
+      - 80:80
+    restart: always
+  db:
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: foro
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+  phpMyAdmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  db-data:
