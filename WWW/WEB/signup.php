@@ -71,20 +71,20 @@ else
         //the form has been posted without, so save it
         //notice the use of mysql_real_escape_string, keep everything safe!
         //also notice the sha1 function which hashes the password
+        $user = $pdo->quote($_POST['user_name']);
+        $pass = password_hash($_POST['user_pass'], PASSWORD_DEFAULT);
+        $email =$pdo->quote($_POST['user_email']);
+        
         $sql = "INSERT INTO
                     users(user_name, user_pass, user_email ,user_date, user_level)
-                VALUES('" . mysql_real_escape_string($_POST['user_name']) . "',
-                       '" . sha1($_POST['user_pass']) . "',
-                       '" . mysql_real_escape_string($_POST['user_email']) . "',
-                        NOW(),
-                        0)";
+                VALUES($user,'$pass',$email,NOW(),0)";
                          
-        $result = mysql_query($sql);
+        $result = $pdo->query($sql);
         if(!$result)
         {
             //something went wrong, display the error
-            echo 'Something went wrong while registering. Please try again later.';
-            //echo mysql_error(); //debugging purposes, uncomment when needed
+            $error=$pdo->errorInfo()[2];
+            echo "Something went wrong while registering. Please try again later. Error: $error";
         }
         else
         {
