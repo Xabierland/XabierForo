@@ -2,7 +2,7 @@
 include 'connect.php';
 include 'header.php';
  
-echo '<h3>Iniciar sesión</h3>';
+echo '<h3>Iniciar sesión</h3><br>';
  
 #COMPRUEBA SI UNA SESION ESTA INICIADA
 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)

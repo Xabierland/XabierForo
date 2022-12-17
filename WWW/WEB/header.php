@@ -12,22 +12,27 @@
 <h1>XabierForum</h1>
     <div id="wrapper">
         <div id="menu">
-            <a class="item" href="index.php">Home</a> -
-            <a class="item" href="create_topic.php">Crear tema</a> -
-            <a class="item" href="create_cat.php">Crear categoria</a>
             <?php
             session_start();
-
-            echo '<div id="userbar">';
                 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
                 {
-                    echo 'Hola ' . $_SESSION['user_name'] . '. ¿No eres tu? <a href="signout.php">Cierra sesión</a>';
+                    echo '<a class="item" href="index.php">Home</a>';
+                    echo '<a class="item" href="create_topic.php">Crear tema</a>';
+                    if($_SESSION['user_level']==1)
+                    {
+                        echo '<a class="item" href="create_cat.php">Crear categoria</a>';
+                    }
+                    echo '<div id="userbar">';
+                        echo 'Hola ' . $_SESSION['user_name'] . '.  <a href="signout.php">Cierra sesión</a>';
+                    echo '</div>';
                 }
                 else
                 {
-                    echo '<a href="login.php">Iniciar sesión</a> o <a href="register.php">crear una cuenta</a>.';
+                    echo '<a class="item" href="index.php">Home</a>';
+                    echo '<div id="userbar">';
+                        echo '<a href="login.php">Iniciar sesión</a> o <a href="register.php">crear una cuenta</a>.';
+                    echo '</div>';
                 }
-            echo '</div>';
             ?>
         </div>
     <div id="content">
