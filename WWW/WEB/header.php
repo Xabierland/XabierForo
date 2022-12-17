@@ -3,33 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="A short description." />
+    <meta name="description" content="Xabier personal forum." />
     <meta name="keywords" content="put, keywords, here" />
-    <title>Forum</title>
+    <title>XabierForum</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<h1>My forum</h1>
+<h1>XabierForum</h1>
     <div id="wrapper">
         <div id="menu">
             <a class="item" href="index.php">Home</a> -
-            <a class="item" href="create_topic.php">Create a topic</a> -
-            <a class="item" href="create_cat.php">Create a category</a>
-         
-            
+            <a class="item" href="create_topic.php">Crear tema</a> -
+            <a class="item" href="create_cat.php">Crear categoria</a>
             <?php
             session_start();
 
             echo '<div id="userbar">';
                 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
                 {
-                    echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
+                    echo 'Hola ' . $_SESSION['user_name'] . '. ¿No eres tu? <a href="signout.php">Cierra sesión</a>';
                 }
                 else
                 {
-                    echo '<a href="signin.php">Sign in</a> or <a href="signup.php">create an account</a>.';
+                    echo '<a href="login.php">Iniciar sesión</a> o <a href="register.php">crear una cuenta</a>.';
                 }
             echo '</div>';
             ?>
         </div>
-        <div id="content">
+    <div id="content">
