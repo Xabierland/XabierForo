@@ -21,6 +21,7 @@
                     if($_SESSION['user_level']==1)
                     {
                         echo '<a class="item" href="create_cat.php">Crear categoria</a>';
+                        echo '<a class="item" href="admin.php">Administracion</a>';
                     }
                     echo '<div id="userbar">';
                         echo 'Hola ' . $_SESSION['user_name'] . '.  <a href="signout.php">Cierra sesión</a>';

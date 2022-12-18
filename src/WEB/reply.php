@@ -1,14 +1,14 @@
 <?php
+session_start();
 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
 {
     if($_SERVER['REQUEST_METHOD'] != 'POST')
     {
         echo 
         '
-        <form method="post" action="topic.php?id=' . $_GET['id'] . '">
+        <form method="post" action="reply.php?id=' . $_GET['id'] . '">
             <label for="reply">Respuesta:</label><br>
             <textarea name="reply-content"></textarea><br>
-
             <br><input type="submit" value="Responder"/>
         </form>
         ';
@@ -22,7 +22,7 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
         $stmt->bindParam(':user_id', $_SESSION['user_id']);
         $stmt->execute();
 
-        header('Location: topic.php?id=' . $_GET['id']);
+        header('location:topic.php?id=' . $_GET['id']);
     }
 }
 else
