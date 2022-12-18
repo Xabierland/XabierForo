@@ -16,13 +16,17 @@ Proyecto simple de un foro online programado en PHP montado en un servidor Apach
 
 ## FAQ
 
-* Donde esta mi servidor Apache.
+* ¿Donde esta mi servidor Apache?
 
 > El servidor Apache se aloja en el puerto 80
 
-* Donde se aloja el servidor phpMyAdmin.
+* ¿Donde se aloja el servidor phpMyAdmin?
 
 > El servidor phpMyAdmin se aloja en el puerto 8080
+
+* ¿Cuales son las credenciales de phpMyAdmin?
+
+> Las credenciales son: `admin` - `admin`
 
 * ¿Como puedo crear categorias?
 
