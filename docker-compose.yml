@@ -1,14 +1,14 @@
 version: '3'
 services:
   web:
-    build: ./WWW
+    build: ./src
     ports:
       - 80:80
     expose:
       - 80/tcp
     restart: always
   db:
-    image: mysql:5.7
+    build: ./database
     volumes:
       - db-data:/var/lib/mysql
     environment:
@@ -19,9 +19,9 @@ services:
   phpMyAdmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      PMA_ARBITRARY: 1
+      MYSQL_DATABASE: foro
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
     restart: always
     ports:
       - "8080:80"
