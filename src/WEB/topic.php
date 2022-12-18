@@ -43,6 +43,7 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
         }
         echo '</table>';
         include 'reply.php';
+        include 'borrar_topic.php';
     }
 }
 else

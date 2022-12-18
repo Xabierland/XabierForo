@@ -11,7 +11,7 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
     $categoria = $stmt->fetch();
 
     echo "<h3>Temas de la categoria \"" . $categoria['cat_name'] . "\"</h3><br>";
-    echo $categoria['cat_description'] . "<br>";
+    echo $categoria['cat_description'];
 
     $query = "SELECT topic_id, topic_subject, topic_date FROM topics WHERE topic_cat=:cat_id";
     $stmt = $conn->prepare($query);
@@ -44,6 +44,7 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
         }
         echo '</table>';
     }
+    include 'borrar_cat.php';
 }
 else
 {
