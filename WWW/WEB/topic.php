@@ -42,12 +42,12 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
             echo '</tr>';
         }
         echo '</table>';
+        include 'reply.php';
     }
 }
 else
 {
     echo "Debes de crear una cuenta para ver el contenido del foro.";
 }
-
 include 'footer.php';
 ?>

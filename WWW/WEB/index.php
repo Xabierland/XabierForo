@@ -8,9 +8,9 @@
         // Preparar la consulta SQL
         $stmt = $conn->prepare("SELECT cat_id, cat_name, cat_description FROM categories");
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $categorias = $stmt->fetchAll();
 
-        if (count($result) == 0) 
+        if (count($categorias) == 0) 
         {
             echo 'No existen categorias.';
         } 
@@ -24,17 +24,36 @@
             <th>Ultimo topico</th>
             </tr>'; 
                 
-            // Recorrer cada fila del resultado
-            foreach ($result as $row) 
+            // Recorrer cada fila del$categoriasado
+            foreach ($categorias as $categoria) 
             {               
-                echo '<tr>';
-                    echo '<td class="leftpart">';
-                        echo '<h3><a href="category.php?id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></h3>' . $row['cat_description'];
-                    echo '</td>';
-                    echo '<td class="rightpart">';
-                        echo '<a href="topic.php?id=">Topic subject</a> at 10-10';
-                    echo '</td>';
-                echo '</tr>';
+                $stmt = $conn->prepare("SELECT * from topics WHERE topic_cat=:cat_id order by topic_id desc LIMIT 1");
+                $stmt->bindParam(':cat_id', $categoria['cat_id']);
+                $stmt->execute();
+                $topico = $stmt->fetch();
+
+                if(!$topico)
+                {
+                    echo '<tr>';
+                        echo '<td class="leftpart">';
+                            echo '<h3><a href="category.php?id=' . $categoria['cat_id'] . '">' . $categoria['cat_name'] . '</a></h3>' . $categoria['cat_description'];
+                        echo '</td>';
+                        echo '<td class="rightpart">';
+                            echo 'No existen temas todavia.';
+                        echo '</td>';
+                    echo '</tr>';
+                }
+                else
+                {
+                    echo '<tr>';
+                        echo '<td class="leftpart">';
+                            echo '<h3><a href="category.php?id=' . $categoria['cat_id'] . '">' . $categoria['cat_name'] . '</a></h3>' . $categoria['cat_description'];
+                        echo '</td>';
+                        echo '<td class="rightpart">';
+                            echo '<a href="topic.php?id=' . $topico['topic_id'] . '">' . $topico['topic_subject'] . '</a></h3>';
+                        echo '</td>';
+                    echo '</tr>';
+                }
             }
             echo '</table>';
         }

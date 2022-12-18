@@ -4,6 +4,8 @@ services:
     build: ./WWW
     ports:
       - 80:80
+    expose:
+      - 80/tcp
     restart: always
   db:
     image: mysql:5.7
