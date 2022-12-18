@@ -9,7 +9,7 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
     $stmt->execute();
     $id = $stmt->fetch();
 
-    if($_SESSION['user_level']==1 or $_SESSION['user_id']==$id)
+    if($_SESSION['user_level']==1 or $_SESSION['user_id']==$id['topic_by'])
     {
         if($_SERVER['REQUEST_METHOD'] != 'POST')
         {
